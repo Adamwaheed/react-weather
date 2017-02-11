@@ -7,9 +7,14 @@ module.exports = {
   resolve:{
     root:__dirname,
     alias : {
-      Greeter : 'public/components/Greeter.jsx',
-      GreeterMessage : 'public/components/GreeterMessage.jsx',
-      GreeterForm : 'public/components/GreeterForm.jsx'
+      Main : 'app/components/Main.jsx',
+      Nav : 'app/components/Nav.jsx',
+      Weather : 'app/components/Weather.jsx',
+      About : 'app/components/About.jsx',
+      Example : 'app/components/Example.jsx',
+      WeatherForm : 'app/components/WeatherForm.jsx',
+      WeatherMessage : 'app/components/WeatherMessage.jsx',
+      openweathermap : 'app/api/openweathermap.jsx'
     },
     extensions:['','.js','.jsx']
   },
