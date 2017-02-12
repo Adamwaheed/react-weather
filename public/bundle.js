@@ -24940,28 +24940,81 @@
 	    Link = _require.Link,
 	    IndexLink = _require.IndexLink;
 
-	var Nav = function Nav(props) {
-	    return React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	            IndexLink,
-	            { to: '/', activeClassName: 'active' },
-	            'Get Weather'
-	        ),
-	        React.createElement(
-	            Link,
-	            { to: 'about', activeClassName: 'active' },
-	            'About'
-	        ),
-	        React.createElement(
-	            Link,
-	            { to: 'example', activeClassName: 'active' },
-	            'Example'
-	        )
-	    );
-	};
+	var Nav = React.createClass({
+	  displayName: 'Nav',
 
+	  OnSearch: function OnSearch(e) {
+	    e.preventDefault();
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'top-bar' },
+	      React.createElement(
+	        'div',
+	        { className: 'top-bar-left' },
+	        React.createElement(
+	          'ul',
+	          { className: 'menu' },
+	          React.createElement(
+	            'li',
+	            { className: 'menu text' },
+	            'React Weather'
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            React.createElement(
+	              IndexLink,
+	              { to: '/', activeClassName: 'active' },
+	              'Get Weather'
+	            )
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            React.createElement(
+	              Link,
+	              { to: 'about', activeClassName: 'active' },
+	              'About'
+	            )
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            React.createElement(
+	              Link,
+	              { to: 'example', activeClassName: 'active' },
+	              'Example'
+	            )
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'top-bar-right' },
+	        React.createElement(
+	          'form',
+	          { onSubmit: this.OnSearch },
+	          React.createElement(
+	            'ul',
+	            { className: 'menu' },
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement('input', { type: 'search', ref: 'search', placeholder: 'search Weather' })
+	            ),
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement('input', { type: 'submit', className: 'button', value: 'Get Weather' })
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
 	module.exports = Nav;
 
 /***/ },
