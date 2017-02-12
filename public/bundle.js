@@ -26678,15 +26678,38 @@
 /* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(8);
 
 	var About = function About(props) {
 	  return React.createElement(
-	    'p',
+	    "div",
 	    null,
-	    'About componen chargest'
+	    React.createElement(
+	      "h1",
+	      { className: "text-center" },
+	      "About"
+	    ),
+	    React.createElement(
+	      "p",
+	      null,
+	      "this is a weather applications build on React, i have build this for the complete react web app developer course."
+	    ),
+	    React.createElement(
+	      "ul",
+	      null,
+	      React.createElement(
+	        "li",
+	        null,
+	        React.createElement(
+	          "a",
+	          { href: "https://facebook.github.io/react" },
+	          "React"
+	        ),
+	        " thus was the JavaScript Framwork Used"
+	      )
+	    )
 	  );
 	};
 
