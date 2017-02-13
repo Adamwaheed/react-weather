@@ -24951,6 +24951,13 @@
 
 	  OnSearch: function OnSearch(e) {
 	    e.preventDefault();
+	    var location = this.refs.search.value;
+	    var encodedLocation = encodeURIComponent(location);
+
+	    if (location.length > 0) {
+	      this.refs.search.value = '';
+	      window.location.hash = '#/?location=' + encodedLocation;
+	    }
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -25046,7 +25053,9 @@
 	    var that = this;
 	    this.setState({
 	      isloading: true,
-	      errorMessage: undefined
+	      errorMessage: undefined,
+	      location: undefined,
+	      temp: undefined
 	    });
 	    OpenWeatherMap.getTemp(location).then(function (temp) {
 	      that.setState({
@@ -25062,7 +25071,20 @@
 	      });
 	    });
 	  },
-
+	  componentDidMount: function componentDidMount() {
+	    var location = this.props.location.query.location;
+	    if (location && location.length > 0) {
+	      this.handleSearch(location);
+	      window.location.hash = "#/";
+	    }
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(newProp) {
+	    var location = newProp.location.query.location;
+	    if (location && location.length > 0) {
+	      this.handleSearch(location);
+	      window.location.hash = "#/";
+	    }
+	  },
 	  render: function render() {
 	    var _state = this.state,
 	        isloading = _state.isloading,
@@ -27205,8 +27227,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./app.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./app.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/lib/loader.js!./app.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/lib/loader.js!./app.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -27224,7 +27246,7 @@
 
 
 	// module
-	exports.push([module.id, ".page-title{\r\n  margin-top: 2.5rem;\r\n  margin-bottom: 2.5rem;\r\n}\r\n\r\ninput[type=search]{\r\n  box-shadow: none;\r\n}\r\n", ""]);
+	exports.push([module.id, ".page-title {\n  margin-top: 2.5rem;\n  margin-bottom: 2.5rem; }\n\ninput[type=search] {\n  box-shadow: none; }\n", ""]);
 
 	// exports
 
